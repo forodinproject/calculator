@@ -1,0 +1,95 @@
+body {
+    min-height: 100vh;
+    min-height: 100dvh;
+    background-color: oklch(10% 0 0);
+    color: oklch(100% 0 0);
+    font-family: monospace, 'Courier New', Courier, sans-serif;
+    font-size: 2rem;
+
+}
+
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-inline: auto;
+    padding-inline: 1rem;
+    max-width: 60rem;
+    padding: 2rem;
+}
+
+.output {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    padding-right: 16px;
+}
+
+.input {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.btn {
+    cursor: pointer;
+    text-align: center;
+    flex: 1;
+    flex-basis: calc(25% - 10px);
+    font: inherit;
+    color: inherit;
+    border: none;
+    padding: 4px;
+    border-radius: 1.5rem;
+    background-color: oklch(27% 0 0);
+
+
+    &:hover {
+        background-color: oklch(35% 0 0);
+    }
+
+    &:active {
+        background-color: oklch(40% 0 0);
+    }
+}
+
+.operator {
+    background-color: oklch(45% 0.3 270);
+
+    &:hover {
+        background-color: oklch(50% 0.3 270);
+    }
+
+    &:active {
+        background-color: oklch(55% 0.3 270);
+
+    }
+}
+
+
+
+.allClear {
+    background-color: oklch(45% 0.3 300);
+
+    &:hover {
+        background-color: oklch(55% 0.3 300);
+    }
+
+    &:active {
+        background-color: oklch(60% 0.3 300);
+    }
+}
+
+
+
+.clear {
+    background-color: oklch(25% 0.03 195);
+
+    &:hover {
+        background-color: oklch(31% 0.03 195);
+    }
+
+    &:active {
+        background-color: oklch(36% 0.03 195);
+    }
+}
