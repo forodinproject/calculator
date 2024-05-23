@@ -68,7 +68,7 @@ body {
 
 
 
-.allClear {
+.allClearBtn {
     background-color: oklch(45% 0.3 300);
 
     &:hover {
@@ -82,7 +82,7 @@ body {
 
 
 
-.clear {
+.backspaceBtn {
     background-color: oklch(25% 0.03 195);
 
     &:hover {
