@@ -47,6 +47,18 @@ function getButtonValue(e) {
             arrDisplay.pop()
         }
 
+        if (clickedVal === '.') {
+
+            if (arrDisplay.indexOf('.') !== arrDisplay.lastIndexOf('.')) {
+                if (!arrDisplay.includes(operators))
+                    arrDisplay.pop()
+            }
+            // else if (arrDisplay.includes(operators)) {
+
+            // }
+        }
+
+
     }
     setDisplay(arrDisplay);
     if (arrDisplay.length === 0)
