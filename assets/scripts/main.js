@@ -27,6 +27,11 @@ function getButtonValue(e) {
         }
         arrDisplay.push(clickedVal);
 
+        //first element should not be operator or decimal point
+        if (operators.includes(arrDisplay[0]) || arrDisplay[0] === '.') {
+            arrDisplay.shift();
+        }
+
     }
     setDisplay(arrDisplay);
     if (arrDisplay.length === 0)
