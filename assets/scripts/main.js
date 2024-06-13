@@ -16,9 +16,18 @@ function getButtonValue(e) {
     if (clickedVal === 'backspace') {
         backspace();
     }
+    else if (clickedVal === '=') {
 
+        if (arrDisplay.includes('+')) {
+            let arrAdd = arrDisplay.join("").split('+');
+            num1 = Number(arrAdd[0])
+            operator = '+'
+            num2 = Number(arrAdd[1])
+            operate(num1, operator, num2)
+        }
+
+    }
     else if (clickedVal !== '' && clickedVal !== undefined) {
-        //dont allow multiple consecutive operators
         if (operators.includes(clickedVal)) {
             if (operators.includes(arrDisplay[arrDisplay.length - 1])) {
                 arrDisplay.pop()
