@@ -1,6 +1,6 @@
 let num1, operator, num2;
 let operators = ['+', '-', '/', '×', '%', '+/-'];
-let arrDisplay = [];
+let arrExpressionDisplay = [];
 let expression = document.querySelector('.expression');
 let result = document.querySelector('.result');
 let btns = document.querySelectorAll(".btn");
@@ -18,8 +18,8 @@ function getButtonValue(e) {
     }
     else if (clickedVal === '=') {
 
-        if (arrDisplay.includes('+')) {
-            let arrAdd = arrDisplay.join("").split('+');
+        if (arrExpressionDisplay.includes('+')) {
+            let arrAdd = arrExpressionDisplay.join("").split('+');
             num1 = Number(arrAdd[0])
             operator = '+'
             num2 = Number(arrAdd[1])
@@ -29,68 +29,71 @@ function getButtonValue(e) {
     }
     else if (clickedVal !== '' && clickedVal !== undefined) {
         if (operators.includes(clickedVal)) {
-            if (operators.includes(arrDisplay[arrDisplay.length - 1])) {
-                arrDisplay.pop()
+            if (operators.includes(arrExpressionDisplay[arrExpressionDisplay.length - 1])) {
+                arrExpressionDisplay.pop()
             }
 
         }
-        arrDisplay.push(clickedVal);
+        arrExpressionDisplay.push(clickedVal);
 
         //first element should not be operator or decimal point
-        if (operators.includes(arrDisplay[0]) || arrDisplay[0] === '.') {
-            arrDisplay.shift();
+        if (operators.includes(arrExpressionDisplay[0]) || arrExpressionDisplay[0] === '.') {
+            arrExpressionDisplay.shift();
         }
 
         //two consecutive decimals not allowed
-        if (arrDisplay[arrDisplay.length - 1] === '.' && arrDisplay[arrDisplay.length - 2] === '.') {
-            arrDisplay.pop()
+        if (arrExpressionDisplay[arrExpressionDisplay.length - 1] === '.' && arrExpressionDisplay[arrExpressionDisplay.length - 2] === '.') {
+            arrExpressionDisplay.pop()
         }
 
         //decimal can not be followed by operator
-        if (arrDisplay[arrDisplay.length - 2] === '.' && operators.includes(arrDisplay[arrDisplay.length - 1])) {
-            arrDisplay.pop()
+        if (arrExpressionDisplay[arrExpressionDisplay.length - 2] === '.' && operators.includes(arrExpressionDisplay[arrExpressionDisplay.length - 1])) {
+            arrExpressionDisplay.pop()
         }
 
         //operator can not be followed by decimal
-        if (operators.includes(arrDisplay[arrDisplay.length - 2]) && arrDisplay[arrDisplay.length - 1] === '.') {
-            arrDisplay.pop()
+        if (operators.includes(arrExpressionDisplay[arrExpressionDisplay.length - 2]) && arrExpressionDisplay[arrExpressionDisplay.length - 1] === '.') {
+            arrExpressionDisplay.pop()
         }
 
         if (clickedVal === '.') {
 
-            if (arrDisplay.indexOf('.') !== arrDisplay.lastIndexOf('.')) {
-                if (!arrDisplay.includes(operators))
-                    arrDisplay.pop()
+            if (arrExpressionDisplay.indexOf('.') !== arrExpressionDisplay.lastIndexOf('.')) {
+                if (!arrExpressionDisplay.includes(operators))
+                    arrExpressionDisplay.pop()
             }
-            // else if (arrDisplay.includes(operators)) {
+            // else if (arrExpressionDisplay.includes(operators)) {
 
             // }
         }
 
 
     }
-    setDisplay(arrDisplay);
-    if (arrDisplay.length === 0)
+    setExpressionDisplay(arrExpressionDisplay);
+    if (arrExpressionDisplay.length === 0)
         expression.textContent = '0';
 
 }
 
-function setDisplay(arrDisplay) {
-    expression.textContent = arrDisplay.join('');
+function setExpressionDisplay(arrExpressionDisplay) {
+    expression.textContent = arrExpressionDisplay.join('');
 }
 
 
-
+function setResultDisplay(resultVal) {
+    result.textContent = resultVal;
+    arrExpressionDisplay = [resultVal];
+}
 
 
 
 function add(num1, num2) {
     let sum = +num1 + +num2;
     console.log(sum)
-    return sum;
+    setResultDisplay(sum)
 }
 
-function subtarct(num1, num2) {
+function subtract(num1, num2) {
     return num1 - num2;
 }
 
@@ -108,7 +111,7 @@ function operate(num1, operator, num2) {
         add(num1, num2);
     }
     else if (operator === '-') {
-        subtarct(num1, num2);
+        subtract(num1, num2);
     }
     else if (operator === '*') {
         multiply(num1, num2);
@@ -124,15 +127,15 @@ allClearBtn.addEventListener('click', clear)
 
 function clear() {
     expression.textContent = 0;
-    arrDisplay = [];
+    arrExpressionDisplay = [];
     result.textContent = 0;
 
 }
 
 let backspaceBtn = document.querySelector('.backspaceBtn')
 function backspace() {
-    arrDisplay.pop();
-    if (arrDisplay.length === 0) {
+    arrExpressionDisplay.pop();
+    if (arrExpressionDisplay.length === 0) {
         expression.textContent = 0;
     }
 }
