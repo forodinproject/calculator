@@ -32,6 +32,11 @@ function getButtonValue(e) {
             arrDisplay.shift();
         }
 
+        //two consecutive decimals not allowed
+        if (arrDisplay[arrDisplay.length - 1] === '.' && arrDisplay[arrDisplay.length - 2] === '.') {
+            arrDisplay.pop()
+        }
+
     }
     setDisplay(arrDisplay);
     if (arrDisplay.length === 0)
