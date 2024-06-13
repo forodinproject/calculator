@@ -37,6 +37,16 @@ function getButtonValue(e) {
             arrDisplay.pop()
         }
 
+        //decimal can not be followed by operator
+        if (arrDisplay[arrDisplay.length - 2] === '.' && operators.includes(arrDisplay[arrDisplay.length - 1])) {
+            arrDisplay.pop()
+        }
+
+        //operator can not be followed by decimal
+        if (operators.includes(arrDisplay[arrDisplay.length - 2]) && arrDisplay[arrDisplay.length - 1] === '.') {
+            arrDisplay.pop()
+        }
+
     }
     setDisplay(arrDisplay);
     if (arrDisplay.length === 0)
