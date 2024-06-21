@@ -17,14 +17,16 @@ function getButtonValue(e) {
         backspace();
     }
     else if (clickedVal === '=') {
-
-        if (arrExpressionDisplay.includes('+')) {
-            let arrAdd = arrExpressionDisplay.join("").split('+');
-            num1 = Number(arrAdd[0])
-            operator = '+'
-            num2 = Number(arrAdd[1])
-            operate(num1, operator, num2)
-        }
+        for (let operator of operators)
+            if (arrExpressionDisplay.includes(operator)) {
+                let arrOperate = arrExpressionDisplay.join("").split(operator);
+                num1 = Number(arrOperate[0])
+                if (operator === '×')
+                    operator = '*';
+                num2 = Number(arrOperate[1])
+                operate(num1, operator, num2)
+                break;
+            }
 
     }
     else if (clickedVal !== '' && clickedVal !== undefined) {
@@ -88,22 +90,24 @@ function setResultDisplay(resultVal) {
 
 
 function add(num1, num2) {
-    let sum = +num1 + +num2;
-    console.log(sum)
-    setResultDisplay(sum)
+    let result = +num1 + +num2;
+    setResultDisplay(result)
 }
 
 function subtract(num1, num2) {
-    return num1 - num2;
+    let result = +num1 - +num2;
+    setResultDisplay(result)
 }
 
 function multiply(num1, num2) {
-    return num1 * num2;
+    let result = +num1 * +num2;
+    setResultDisplay(result)
 }
 
 function divide(num1, num2) {
-    if (num2 === 0) return 'error: zero divisor not allowed'
-    return num1 / num2;
+    if (num2 === 0) return 'error: zero divisor not allowed';
+    let result = +num1 / +num2;
+    setResultDisplay(result)
 }
 
 function operate(num1, operator, num2) {
